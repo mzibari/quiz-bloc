@@ -13,7 +13,7 @@ h1{
 }
 
 .main-div{
-    height: 300px;
+    
     padding: 5%;
 }
 .button{
@@ -42,6 +42,16 @@ h1{
 
 .hide, .tablet, .desktop{
     display: none;
+}
+
+.questions{
+    border: none;
+}
+
+.questions *{
+    display: flex;
+    margin-top: 10px;
+
 }
 
 

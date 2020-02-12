@@ -16,7 +16,7 @@
     <header>
         <h1 class="opaque-background">10 Trick Questions</h1>
     </header>
-    <div class="progress opaque-background"><!-- This is just to demonstrate the different screen sizes --> 
+    <div class="progress opaque-background hide">
         <div class="mobile result">Q: 1/10 S: 0/10</div>
         <div class="tablet result">Question: 1/10 Score: 0/10</div>
         <div class="desktop result">Question: 1/10 Score: 0 correct, 0 incorrect</div>
@@ -25,11 +25,11 @@
         <div class="opaque-background main-div">
             <section>
                 <p>Do you think you have what it takes to answer all questions correctly?</p>
-                <button type="button" class="button">Start</button>
+                <button type="button" class="button start">Start</button>
             </section>
             <section>
                 <form>
-                    <fieldset class="hide">
+                    <fieldset class="hide questions">
                         <legend class="question"></legend>
                         <input type="radio" name="options" id="ans-1" value="Answer 1">
                         <label for="ans-1"></label>
@@ -39,8 +39,15 @@
                         <label for="ans-3"></label>
                         <input type="radio" name="options" id="ans-4" value="Answer 4">
                         <label for="ans-4"></label>
+                        <button type="button check" class="button">Check</button>
                     </fieldset>
                 </form>
+            </section>
+            <section> 
+                <div class="results hide">
+                    <p class=" result-score"></p>
+                    <button type="button retake" class="button">Retake Quiz</button>
+                </div>
             </section>
         </div>
     </main>
