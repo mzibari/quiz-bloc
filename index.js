@@ -154,7 +154,6 @@ function renderQuestion(){
     const displayQuestion = STORE.questions[STORE.currentQuestion];
     $(".question").text(displayQuestion.question);
     renderProgress(); 
-    updateProgress();
     renderOptions();
 }
 
@@ -163,6 +162,7 @@ function renderOptions(){
     for (let i = 0; i < 4; i++){
         $(`.option-${i}`).text(opt.options[i]);
     } 
+    updateProgress();
 }
 
 function validateAnswer(){
