@@ -171,20 +171,12 @@ $(function validateAnswer() {
     const displayedQuestion = STORE.questions[STORE.currentQuestion];
     const selectedAnswerIndex = returnAnswerIndex();
     if (selectedAnswerIndex === displayedQuestion.answer) {
-      $(".feedback").text("You're answer was correct!!!");
-      $(".explination").text(`Explination: ${displayedQuestion.explination}`);
-      $(".answer").toggleClass(" hide");
-      STORE.correct++;
+      renderCorrectAnswer(displayedQuestion);
     }
     else {
-      $(".feedback").text("You're answer was incorrect!");
-      $(".explination").text(`Explination: ${displayedQuestion.explination}`);
-      $(".answer").toggleClass(" hide");
-      
-      STORE.incorrect++;
+      renderIncorrectAnswer(displayedQuestion);
     }
-    
-    updateProgress(); 
+    updateProgress();
     document.getElementById("check").disabled = true;
   });
 });
@@ -199,11 +191,20 @@ function returnAnswerIndex() {
   }
 }
 
-function renderAnswer() {
-
+function renderCorrectAnswer(obj) {
+  $(".feedback").text("You're answer was correct!!!");
+  $(".explination").text(`Explination: ${obj.explination}`);
+  $(".answer").toggleClass(" hide");
+  STORE.correct++;
 
 }
 
+function renderIncorrectAnswer(obj) {
+  $(".feedback").text("You're answer was incorrect!");
+  $(".explination").text(`Explination: ${obj.explination}`);
+  $(".answer").toggleClass(" hide");
+  STORE.incorrect++;
+}
 function renderResults() {
 
 
