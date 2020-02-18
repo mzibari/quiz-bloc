@@ -168,16 +168,22 @@ function renderOptions() {
 $(function validateAnswer() {
   $('.check').on('click', function (event) {
     event.preventDefault();
-    const displayedQuestion = STORE.questions[STORE.currentQuestion];
-    const selectedAnswerIndex = returnAnswerIndex();
-    if (selectedAnswerIndex === displayedQuestion.answer) {
-      renderCorrectAnswer(displayedQuestion);
+    const validity = document.getElementById("main-questions").checkValidity();
+    if (validity) {
+      const displayedQuestion = STORE.questions[STORE.currentQuestion];
+      const selectedAnswerIndex = returnAnswerIndex();
+      if (selectedAnswerIndex === displayedQuestion.answer) {
+        renderCorrectAnswer(displayedQuestion);
+      }
+      else {
+        renderIncorrectAnswer(displayedQuestion);
+      }
+      updateProgress();
+      document.getElementById("check").disabled = true;
     }
-    else {
-      renderIncorrectAnswer(displayedQuestion);
+    else{
+      document.getElementById("main-questions").reportValidity();
     }
-    updateProgress();
-    document.getElementById("check").disabled = true;
   });
 });
 
