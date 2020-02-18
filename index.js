@@ -208,13 +208,13 @@ function renderIncorrectAnswer(obj) {
 
 $(function renderNextQuestion() {
   $('.next').on('click', function (event) {
+    event.preventDefault();
     if (STORE.currentQuestion < 10) {
-      event.preventDefault();
       resetDisplay();
       renderQuestion();
     }
-    else{
-      document.getElementById("indicator").text(STORE.correct);
+    else {
+      renderResults();
     }
   })
 });
@@ -229,13 +229,10 @@ function resetDisplay() {
 
 
 function renderResults() {
-
-
-}
-
-function resetProgress() {
-
-
+  $(".answer").toggleClass(" hide");
+  $(".results").toggleClass(" hide");
+  $(".main-questions").toggleClass(" hide");
+  $(".result-score").text(`You answered ${STORE.correct}% of the questions correctly`);
 }
 
 function handleQuestions() {
