@@ -205,6 +205,29 @@ function renderIncorrectAnswer(obj) {
   $(".answer").toggleClass(" hide");
   STORE.incorrect++;
 }
+
+$(function renderNextQuestion() {
+  $('.next').on('click', function (event) {
+    if (STORE.currentQuestion < 10) {
+      event.preventDefault();
+      resetDisplay();
+      renderQuestion();
+    }
+    else{
+      document.getElementById("indicator").text(STORE.correct);
+    }
+  })
+});
+
+function resetDisplay() {
+  $(".answer").toggleClass(" hide");
+  document.getElementById("check").disabled = false;
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById(`ans-${i}`).checked = false;
+  }
+}
+
+
 function renderResults() {
 
 
