@@ -103,7 +103,7 @@ const STORE = {
         "Alice"
       ],
       answer: 2,
-      explination: "It's MARY's father. Answer is Mary"
+      explination: "It's MARY's father. Answwer is Mary"
     },
 
     {
