@@ -232,7 +232,7 @@ function renderResults() {
   $(".answer").toggleClass(" hide");
   $(".results").toggleClass(" hide");
   $(".main-questions").toggleClass(" hide");
-  $(".result-score").text(`You answered ${STORE.correct}% of the questions correctly`);
+  $(".result-score").text(`You answered ${STORE.correct}0% of the questions correctly`);
 }
 
 function handleQuestions() {
