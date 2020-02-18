@@ -89,7 +89,7 @@ const STORE = {
         "12",
         "0"
       ],
-      answer: 3,
+      answer: 2,
       explination: "A dozen is 12, it doesn't matter what type of stamp. Answer is 12"
     },
 
@@ -102,8 +102,8 @@ const STORE = {
         "Mary",
         "Alice"
       ],
-      answer: 3,
-      explination: "It's MARY's father. Answwer is Mary"
+      answer: 2,
+      explination: "It's MARY's father. Answer is Mary"
     },
 
     {
