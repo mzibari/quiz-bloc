@@ -180,6 +180,7 @@ $(function validateAnswer() {
       }
       updateProgress();
       document.getElementById("check").disabled = true;
+      document.getElementById("next").disabled = false;
     }
     else{
       document.getElementById("main-questions").reportValidity();
@@ -215,6 +216,7 @@ function renderIncorrectAnswer(obj) {
 $(function renderNextQuestion() {
   $('.next').on('click', function (event) {
     event.preventDefault();
+    document.getElementById("next").disabled = true;
     if (STORE.currentQuestion < 10) {
       resetDisplay();
       renderQuestion();

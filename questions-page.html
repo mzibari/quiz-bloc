@@ -8,7 +8,7 @@
     <meta name="description" content="HTML, CSS Quiz">
     <link href="index.css" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="#">
-    <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
 </head>
 
 
@@ -25,19 +25,22 @@
         <div class="opaque-background main-div">
             <section>
                 <form class="main-questions" id="main-questions">
-                        <p class="question"></p>
-                        <fieldset class="questions">
-                            <legend class="choices"></legend>
-                            <label for="ans-1"><input type="radio" required name="options" id="ans-1" value="Answer 1"
-                                   ><span class="option-0"></span></label>
-                            <label for="ans-2"><input type="radio" required name="options" id="ans-2" value="Answer 2"
-                                   ><span class="option-1"></span></label>
-                            <label for="ans-3"><input type="radio" required name="options" id="ans-3" value="Answer 3"
-                                   ><span class="option-2"></span></label>
-                            <label for="ans-4"><input type="radio" required name="options" id="ans-4" value="Answer 4"
-                                   ><span class="option-3"></span></label>
-                            <button type="submit" class="button check" id="check">Check</button>
-                        </fieldset>
+                    <p class="question"></p>
+                    <fieldset class="questions">
+                        <legend class="choices"></legend>
+                        <label for="ans-1"><input type="radio" required name="options" id="ans-1" value="Answer 1"><span
+                                class="option-0"></span></label>
+                        <label for="ans-2"><input type="radio" required name="options" id="ans-2" value="Answer 2"><span
+                                class="option-1"></span></label>
+                        <label for="ans-3"><input type="radio" required name="options" id="ans-3" value="Answer 3"><span
+                                class="option-2"></span></label>
+                        <label for="ans-4"><input type="radio" required name="options" id="ans-4" value="Answer 4"><span
+                                class="option-3"></span></label>
+                    </fieldset>
+                </form>
+                <form class="buttons">
+                    <button type="submit" class="button check" id="check">Submit</button>
+                    <button type="submit" class="button next" id="next" disabled>Next</button>
                 </form>
             </section>
             <section>
@@ -45,7 +48,7 @@
                     <span class="feedback"></span>
                     <p class="explination"></p>
                     <form>
-                        <button type="submit" class="button next">Next</button>
+
                     </form>
                 </div>
             </section>
