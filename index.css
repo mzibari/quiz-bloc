@@ -45,7 +45,7 @@ h1{
     display: none;
 }
 
-.questions{
+.questions, .buttons{
     border: none;
 }
 

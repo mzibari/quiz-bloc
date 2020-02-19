@@ -237,6 +237,8 @@ function resetDisplay() {
 
 
 function renderResults() {
+  $(".check").toggleClass(" hide");
+  $(".next").toggleClass(" hide");
   $(".answer").toggleClass(" hide");
   $(".results").toggleClass(" hide");
   $(".main-questions").toggleClass(" hide");
