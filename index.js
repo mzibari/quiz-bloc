@@ -1,5 +1,5 @@
 'use strict';
-
+//Array that has allk the information about the quiz questions
 const STORE = {
   questions: [
     {
@@ -11,8 +11,9 @@ const STORE = {
         "60",
         "1"
       ],
+      //The index of the correct answer
       answer: 3,
-      explination: "a man is only born once, therefore only have one birthday. Answer is 1"
+      explanation: "a man is only born once, therefore only have one birthday. Answer is 1"
     },
 
     {
@@ -25,7 +26,7 @@ const STORE = {
         "12"
       ],
       answer: 3,
-      explination: "Every month has at least 28 days. Answer is 12"
+      explanation: "Every month has at least 28 days. Answer is 12"
     },
 
     {
@@ -38,7 +39,7 @@ const STORE = {
         "1"
       ],
       answer: 1,
-      explination: "You only took 2. Answer is 2"
+      explanation: "You only took 2. Answer is 2"
     },
 
     {
@@ -51,7 +52,7 @@ const STORE = {
         "0 minutes"
       ],
       answer: 1,
-      explination: "You start by taking one right away, then take the second one after 30 minutes, then the last one after another 30 minutes. Answer is 60 minutes"
+      explanation: "You start by taking one right away, then take the second one after 30 minutes, then the last one after another 30 minutes. Answer is 60 minutes"
     },
 
     {
@@ -64,7 +65,7 @@ const STORE = {
         "9"
       ],
       answer: 3,
-      explination: "All but nine died, meaning 9 have not died. Answer is 9"
+      explanation: "All but nine died, meaning 9 have not died. Answer is 9"
     },
 
     {
@@ -77,7 +78,7 @@ const STORE = {
         "4th"
       ],
       answer: 1,
-      explination: "The second person is in the 2nd place, you pass them and your position becomes 2nd. Answer is 2nd"
+      explanation: "The second person is in the 2nd place, you pass them and your position becomes 2nd. Answer is 2nd"
     },
 
     {
@@ -90,7 +91,7 @@ const STORE = {
         "0"
       ],
       answer: 2,
-      explination: "A dozen is 12, it doesn't matter what type of stamp. Answer is 12"
+      explanation: "A dozen is 12, it doesn't matter what type of stamp. Answer is 12"
     },
 
     {
@@ -103,7 +104,7 @@ const STORE = {
         "Alice"
       ],
       answer: 2,
-      explination: "It's MARY's father. Answwer is Mary"
+      explanation: "It's MARY's father. Answwer is Mary"
     },
 
     {
@@ -116,7 +117,7 @@ const STORE = {
         "None of the above"
       ],
       answer: 1,
-      explination: "Moses didn't take any animals on the ark, Noah did. Answer is 0"
+      explanation: "Moses didn't take any animals on the ark, Noah did. Answer is 0"
     },
 
     {
@@ -129,28 +130,32 @@ const STORE = {
         "The direction the wind is blowing"
       ],
       answer: 3,
-      explination: "It doesn't matter which direction the train is heading, The wind will determine that. Answer is The direction the wind is blowing"
+      explanation: "It doesn't matter which direction the train is heading, The wind will determine that. Answer is The direction the wind is blowing"
     },
   ],
+  //Track the current question that the user is answering
   currentQuestion: 0,
+  //Track the correctly answered questions
   correct: 0,
+  //Track the incorrectly answered questions
   incorrect: 0
 };
 
 
-
+//Renders the progress as a banner above the main display
 function renderProgress() {
   $(".mobile").text(`Q: ${STORE.currentQuestion + 1}/10 S: ${STORE.correct}/10`);
   $(".tablet").text(`Question: ${STORE.currentQuestion + 1}/10 Score: ${STORE.correct}/10`);
   $(".desktop").text(`Question: ${STORE.currentQuestion + 1}/10 Score: ${STORE.correct} correct ${STORE.incorrect} incorrect`);
 }
 
+//Updates the progress and move the tracker to the next question
 function updateProgress() {
   renderProgress()
   STORE.currentQuestion++;
-
 }
 
+//Renders the question that the user is on
 function renderQuestion() {
   const displayQuestion = STORE.questions[STORE.currentQuestion];
   $(".question").text(displayQuestion.question);
@@ -158,6 +163,7 @@ function renderQuestion() {
   renderOptions();
 }
 
+//Renders the options for the current question
 function renderOptions() {
   const opt = STORE.questions[STORE.currentQuestion];
   for (let i = 0; i < 4; i++) {
@@ -199,18 +205,28 @@ function returnAnswerIndex() {
 }
 
 function renderCorrectAnswer(obj) {
-  $(".feedback").text("You're answer was correct!!!");
-  $(".explination").text(`Explination: ${obj.explination}`);
+  transitionAnswerOut();
+  $(".feedback").text("Your answer was correct!!!");
+  $(".explanation").text(`explanation: ${obj.explanation}`);
   $(".answer").toggleClass(" hide");
   STORE.correct++;
 
 }
 
 function renderIncorrectAnswer(obj) {
-  $(".feedback").text("You're answer was incorrect!");
-  $(".explination").text(`Explination: ${obj.explination}`);
+  transitionAnswerOut();
+  $(".feedback").text("Your answer was incorrect!");
+  $(".explanation").text(`explanation: ${obj.explanation}`);
   $(".answer").toggleClass(" hide");
   STORE.incorrect++;
+}
+
+function transitionAnswerOut(){
+  document.getElementById("transitioning").style.height = "200px";
+}
+
+function transitionAnswerIn(){
+  document.getElementById("transitioning").style.height = "0px";
 }
 
 $(function renderNextQuestion() {
@@ -228,6 +244,7 @@ $(function renderNextQuestion() {
 });
 
 function resetDisplay() {
+  transitionAnswerIn();
   $(".answer").toggleClass(" hide");
   document.getElementById("check").disabled = false;
   for (let i = 1; i <= 4; i++) {

@@ -32,6 +32,12 @@ h1{
     box-shadow: 1px 1px 3px lightgray;
 }
 
+button:disabled,
+button[disabled]{
+  transition: none;
+  color: lightgray;
+  background-color: gray;
+}
 
 .opaque-background{
     background: whitesmoke;
@@ -44,7 +50,7 @@ h1{
     background-repeat: repeat;
 }
 
-.button:hover {
+.button:hover:not([disabled]) {
     background-color: rgb(88, 151, 172);
   }
 
@@ -80,6 +86,10 @@ h1{
     margin-right: 10px;
 }
 
+.transitioning{
+    transition: all 0.5s ease;
+    height: 0px;
+}
 
 @media screen and (min-width: 480px){
     *{
