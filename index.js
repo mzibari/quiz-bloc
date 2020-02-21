@@ -104,7 +104,7 @@ const STORE = {
         "Alice"
       ],
       answer: 2,
-      explanation: "It's MARY's father. Answwer is Mary"
+      explanation: "It's MARY's father. Answer is Mary"
     },
 
     {
@@ -171,11 +171,11 @@ function renderOptions() {
   }
 }
 
+//Validate the answer to be correct or incorrect
 $(function validateAnswer() {
   $('.check').on('click', function (event) {
     event.preventDefault();
-    const validity = document.getElementById("main-questions").checkValidity();
-    if (validity) {
+    if (chackValidityOfSelection()) {
       const displayedQuestion = STORE.questions[STORE.currentQuestion];
       const selectedAnswerIndex = returnAnswerIndex();
       if (selectedAnswerIndex === displayedQuestion.answer) {
@@ -185,34 +185,57 @@ $(function validateAnswer() {
         renderIncorrectAnswer(displayedQuestion);
       }
       updateProgress();
-      document.getElementById("check").disabled = true;
-      document.getElementById("next").disabled = false;
+      disableButton("check");
+      enableButton("next");
     }
-    else{
-      document.getElementById("main-questions").reportValidity();
+    else {
+      reportNoSelectionMade();
     }
   });
 });
 
+//Disable a button
+function disableButton(btn) {
+  document.getElementById(btn).disabled = true;
+}
+
+//Enable a button
+function enableButton(btn) {
+  document.getElementById(btn).disabled = false;
+}
+
+//Report that the user have not selected an answer
+function reportNoSelectionMade() {
+  document.getElementById("main-questions").reportValidity();
+}
+
+//Check if the user have made a selection or not, returns true if there is a selection and 
+//return false if there isn't
+function chackValidityOfSelection() {
+  const validity = document.getElementById("main-questions").checkValidity();
+  return validity;
+}
+
+//Returns the index of the selected options
 function returnAnswerIndex() {
   const index = document.getElementsByName("options");
   for (let i = 0; i < index.length; i++) {
     if (index[i].checked) {
       return i;
     }
-
   }
 }
 
+//Render feedback for correct answer, then increment the correct answer tracker
 function renderCorrectAnswer(obj) {
   transitionAnswerOut();
   $(".feedback").text("Your answer was correct!!!");
   $(".explanation").text(`explanation: ${obj.explanation}`);
   $(".answer").toggleClass(" hide");
   STORE.correct++;
-
 }
 
+//Render feedback for incorrect answer, then increment the incorrect answer tracker
 function renderIncorrectAnswer(obj) {
   transitionAnswerOut();
   $(".feedback").text("Your answer was incorrect!");
@@ -221,18 +244,22 @@ function renderIncorrectAnswer(obj) {
   STORE.incorrect++;
 }
 
-function transitionAnswerOut(){
+//Transitions out the height of the area where feedback is to be displayed
+function transitionAnswerOut() {
   document.getElementById("transitioning").style.height = "200px";
 }
 
-function transitionAnswerIn(){
+//Transitions in the height of the area where feedback is to be displayed
+function transitionAnswerIn() {
   document.getElementById("transitioning").style.height = "0px";
 }
 
+//Renders the next question after the user clicks next, if user has answered all question
+//render results
 $(function renderNextQuestion() {
   $('.next').on('click', function (event) {
     event.preventDefault();
-    document.getElementById("next").disabled = true;
+    disableButton("next");
     if (STORE.currentQuestion < 10) {
       resetDisplay();
       renderQuestion();
@@ -243,16 +270,17 @@ $(function renderNextQuestion() {
   })
 });
 
+//Resets the feedback display and uncheck the checked radio box
 function resetDisplay() {
   transitionAnswerIn();
   $(".answer").toggleClass(" hide");
-  document.getElementById("check").disabled = false;
+  enableButton("check");
   for (let i = 1; i <= 4; i++) {
     document.getElementById(`ans-${i}`).checked = false;
   }
 }
 
-
+//Renders the results after all questions are answered
 function renderResults() {
   $(".check").toggleClass(" hide");
   $(".next").toggleClass(" hide");
@@ -262,6 +290,7 @@ function renderResults() {
   $(".result-score").text(`You answered ${STORE.correct}0% of the questions correctly`);
 }
 
+//Callback function 
 function handleQuestions() {
   renderQuestion();
 }
